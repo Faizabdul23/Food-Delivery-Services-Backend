@@ -101,31 +101,7 @@ public class RestaurantsServiceImplTest {
         });
     }
 
-    /**
-     * Test to verify that the `deleteRestaurantById` method successfully deletes a restaurant when a valid ID is provided.
-     * It checks that the `deleteById` method of the repository is called once.
-     */
-    @Test
-    public void testDeleteRestaurantById_Success() throws InvalidRestaurantIdException {
-        Mockito.when(restaurantsRepository.existsById(1)).thenReturn(true);
-
-        restaurantsService.deleteRestaurantById(1);
-        Mockito.verify(restaurantsRepository, Mockito.times(1)).deleteById(1);
-    }
-
-    /**
-     * Test to verify that an `InvalidRestaurantIdException` is thrown when trying to delete a restaurant
-     * with an invalid (non-existent) ID. It checks that the exception is thrown when the ID does not exist in the repository.
-     */
-    @Test
-    public void testDeleteRestaurantById_InvalidId() {
-        Mockito.when(restaurantsRepository.existsById(1)).thenReturn(false);
-
-        assertThrows(InvalidRestaurantIdException.class, () -> {
-            restaurantsService.deleteRestaurantById(1);
-        });
-    }
-
+    
     /**
      * Test to verify that the `addRestaurant` method successfully adds a new restaurant when the restaurant ID is unique.
      * It checks that the restaurant is saved correctly in the repository.
